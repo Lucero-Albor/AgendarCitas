@@ -1,0 +1,75 @@
+.busquedaB{
+    border-radius: 25px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    margin-right: 15%;
+}
+
+.botonCrear{
+    border-radius: 20px;
+    background-color:white;
+    border: none;
+    height: 40px;
+    width: 50%;
+    color: #215485;
+    transition: transform 0.5s ease;
+
+}
+.botonCrear:hover{
+    background-color: #00386c;
+    color: white;
+    transform: scale(1.1);
+}
+
+.busqueda{
+    border-radius: 20px;
+    border: none;
+    height: 30px;
+}
+
+.tituloArt{
+    margin-left: 6%;
+}
+.imagen{
+    transition: transform 0.5s ease;
+}
+.btnPrincipal{
+    background: linear-gradient(45deg, #000140, #3a96ff);
+    color: white;
+    transition: transform 1s ease;
+}
+.btnPrincipal:hover{
+    /*  background-color: rgba(0, 9, 59, 0.467); */
+    background: linear-gradient(45deg, #3a96ff, #000140);
+    color: white;
+    transform: scale(2.1) rotate(360deg);
+}
+.imagen:hover{
+    transform: scale(1.1);
+}
+.card{
+    transition: transform 0.5s ease;
+}
+.card:hover{
+    transform: scale(1.1);
+    background-color: rgba(200, 200, 200, 0.486);
+}
+/* estilo pa las yamas */
+.yamas{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.yamas video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+
