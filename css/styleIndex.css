@@ -56,23 +56,6 @@
     transform: scale(1.1);
     background-color: rgba(200, 200, 200, 0.486);
 }
-/* estilo pa las yamas */
-.yamas{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-.yamas video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
 
   .container{
     margin: 0;
