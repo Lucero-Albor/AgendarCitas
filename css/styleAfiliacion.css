@@ -1,0 +1,84 @@
+ .container {
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-color: black;
+  }
+
+  .tramite{
+    margin-left: 700%;
+}
+  
+  .formulario {
+    background:white;
+    border-radius: 20px;
+    padding: 10px;
+    width: 40%;
+  }
+
+  .formulario h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
+  
+  .formulario input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    align-items: flex-end;
+    font-size: 14px;
+    border-color: black;
+  }
+
+  .formulario span{
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .formulario select{
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+  }
+
+  .formulario img{
+    width: 100px;
+  }
+
+  .botonIniciar{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #EAA724;
+    border: none;
+    border-radius: 15px;
+    width: 150px;
+    height: 40px;
+  }
+
+  .contenedorDatos{
+    background:#5A1846;
+    border-radius: 20px;
+    padding: 10px;
+    width: 40%;
+    margin-left: 55%;
+    margin-top: -430px;
+  }
+
+  .contenedorDatos span{
+    color: white;
+    font-size: 20px;
+    padding-left: 30px;
+    padding: 20px;
+  }
+
+  .contenedorDatos  h2{
+    color: white;
+    font-size: 40px;
+    padding-left: 30px;
+  }
