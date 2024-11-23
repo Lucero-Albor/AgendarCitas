@@ -1,8 +1,10 @@
-.busquedaB{
-    border-radius: 25px;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    margin-right: 15%;
+.iniciaSesion{
+   color: white;
+   padding: 20px;
+}
+
+.tramite{
+    margin-left: 700%;
 }
 
 .botonCrear{
@@ -34,15 +36,15 @@
     transition: transform 0.5s ease;
 }
 .btnPrincipal{
-    background: linear-gradient(45deg, #000140, #3a96ff);
+    background: linear-gradient(45deg, #FCBE00, #FFDC78);
     color: white;
-    transition: transform 1s ease;
+    transition: transform 0.5s ease;
 }
 .btnPrincipal:hover{
     /*  background-color: rgba(0, 9, 59, 0.467); */
-    background: linear-gradient(45deg, #3a96ff, #000140);
+    background: linear-gradient(45deg, #FFDC78, #FCBE00);
     color: white;
-    transform: scale(2.1) rotate(360deg);
+    transform: scale(1.1);
 }
 .imagen:hover{
     transform: scale(1.1);
@@ -71,5 +73,55 @@
     transform: translate(-50%, -50%);
     z-index: -1;
   }
+
+  .container{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    max-width: 100%;
+   
+}
+
+.principal {
+    text-align: center;
+    padding: 5%;
+    background-image: url('../images/imgIndex.jpg');
+    width: 125.5%;
+    max-width: 150%;
+    margin-left: -15%;
+}
+
+.titulo {
+    color: white;
+    font-size: 5vw;
+}
+
+.texto {
+    color: white;
+    font-size: 2vw;
+}
+
+.info {
+    text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 40%;
+}
+
+.imagen {
+    border-radius: 20px;
+    margin-top: -30%;
+    margin-left: 50%;
+    width: 25%;
+    height: 25%;
+}
+
+.btnPrincipal{
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    width: 40%;
+}
+  
 
 
