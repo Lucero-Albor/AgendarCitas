@@ -64,8 +64,8 @@
             echo 
             '<script>
                 swal({
-                    title: "Error",
-                    text: "El correo ingresado ya está registrado.",
+                    title: "Correo ya registrado",
+                    text: "Ingresa otra dirección de correo electrónico.",
                     icon: "error",
                     button: "Aceptar",
                 });
@@ -91,7 +91,7 @@
 
                     .then((Okay) => {
                         if (Okay) {
-                            window.location.href = "iniciarSesion.php";
+                            window.location.href = "menuTramites.php";
                         } 
                     });
                 </script>';
@@ -104,7 +104,6 @@
                         title: "Error",
                         text: "Fallo de registro: ' . mysqli_error($conexion) . '",
                         icon: "error",
-                        button: "Inténtalo de nuevo",
                     });
                 </script>';
             }

@@ -72,8 +72,15 @@
                 swal({
                     title: "Bienvenido",
                     text: "Hola, ' .$n.'",
-                    icon: "success"
+                    icon: "success",
+                    button: "Iniciar sesión",    
                 })
+
+                    .then((Okay) => {
+                        if (Okay) {
+                            window.location.href = "menuTramites.php";
+                        } 
+                    })
             </script>';
         }
         else{

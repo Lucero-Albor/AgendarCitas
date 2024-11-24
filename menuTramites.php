@@ -1,3 +1,21 @@
+<?php
+  include'conexiones/conexion.php';
+  session_start();
+  if (isset($_SESSION['correo'])) {
+    $correo = $_SESSION['correo'];
+    $nombre = "SELECT nombre, apellidos FROM usuarios WHERE correo = '$correo'";
+    $result = mysqli_query($conexion, $nombre);
+    $user = mysqli_fetch_assoc($result);
+    $nombre = $user['nombre'];
+    $apellidos = $user['apellidos'];
+    $n_completo = $nombre . ' ' . $apellidos;
+  } 
+
+  else {
+    echo "Inicia sesión para continuar.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,7 +48,8 @@
               </li>
               <!-- Fin desplegable -->
              </ul>
-             <a style="color: white;" class="iniciaSesion" href="iniciarSesion.php">Iniciar sesión</a>
+             <span id="user"><?php echo $n_completo;?></span>
+             <!-- <a style="color: white;" class="iniciaSesion" href="iniciarSesion.php">Iniciar sesión</a> -->
           </div>
         </div> 
       </nav>
