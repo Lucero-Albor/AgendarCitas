@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/styleRegistroSesion.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Registro</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
       
     <div class="container">
     <center>
-        <form  class="formulario" action="conexiones/registrousuarios.php" method="post">
+        <form  class="formulario" method="post">
             <img src="images/logo.png" alt="" width="100px">
         <br>
             <font face="century gothic">
@@ -44,3 +45,50 @@
     </div>
 </body>
 </html>
+
+<?php
+    include'conexiones/conexion.php';
+
+    if(isset($_POST['registro'])){
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $correo = $_POST['correo'];
+        $pass = $_POST['pass'];
+        $rol = 'Usuario';
+
+        $registrar = "INSERT INTO usuarios (nombre, apellidos, correo, pass, rol) 
+                    VALUES ('$nombres', '$apellidos', '$correo', '$pass', '$rol')";
+        $result = mysqli_query($conexion, $registrar);
+        
+        if ($result) {
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo 
+            '<script>
+                swal({
+                    title: "Registro exitoso",
+                    text: "Usuario registrado con éxito",
+                    icon: "success",
+                    button: "Iniciar sesión",    
+                })
+
+                .then((Okay) => {
+                    if (Okay) {
+                        window.location.href = "iniciarSesion.php";
+                    } 
+                });
+            </script>';
+        } 
+        
+        else {
+            echo 
+            '<script>
+                swal({
+                    title: "Error",
+                    text: "Fallo de registro: ' . mysqli_error($conexion) . '",
+                    icon: "error",
+                    button: "Inténtalo de nuevo",
+                });
+            </script>';
+        }
+    }
+?>
