@@ -1,19 +1,5 @@
 <?php
-  include'conexiones/conexion.php';
-  session_start();
-  if (isset($_SESSION['correo'])) {
-    $correo = $_SESSION['correo'];
-    $nombre = "SELECT nombre, apellidos FROM usuarios WHERE correo = '$correo'";
-    $result = mysqli_query($conexion, $nombre);
-    $user = mysqli_fetch_assoc($result);
-    $nombre = $user['nombre'];
-    $apellidos = $user['apellidos'];
-    $n_completo = $nombre . ' ' . $apellidos;
-  } 
-
-  else {
-    echo "Inicia sesión para continuar.";
-}
+  include'conexiones/sesion.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +26,7 @@
                   Trámites
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Afiliación</a></li>
+                  <li><a class="dropdown-item" href="afiliacion.php">Afiliación</a></li>
                   <li><a class="dropdown-item" href="#">Cita médica</a></li>
                   <li><a class="dropdown-item" href="#">Solicitud carnet</a></li>
                   <li><a class="dropdown-item" href="#">Incapacidad laboral</a></li>
@@ -69,7 +55,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Afiliación</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a style="color: white;" href="#" class="btn btn-warning"><b>Tramitar</b></a>
+                      <a style="color: white;" href="afiliacion.php" class="btn btn-warning"><b>Tramitar</b></a>
                     </div>
                   </div>
             </div>
