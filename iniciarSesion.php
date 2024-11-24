@@ -38,6 +38,7 @@
             </font>
             <center>
                 <font face="century gothic">
+                    <a href="registroSesion.php">Registrarse</a>
                     <button class="botonIniciar">Iniciar</button>
                 </font>
              </center>
