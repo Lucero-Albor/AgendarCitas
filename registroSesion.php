@@ -56,39 +56,60 @@
         $pass = $_POST['pass'];
         $rol = 'Usuario';
 
-        $registrar = "INSERT INTO usuarios (nombre, apellidos, correo, pass, rol) 
-                    VALUES ('$nombres', '$apellidos', '$correo', '$pass', '$rol')";
-        $result = mysqli_query($conexion, $registrar);
-        
-        if ($result) {
+        $buscar = "SELECT correo FROM usuarios WHERE correo = '$correo'";
+        $buscar_correo = mysqli_query($conexion, $buscar);
+
+        if (mysqli_num_rows($buscar_correo) > 0) {
             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
             echo 
             '<script>
                 swal({
-                    title: "Registro exitoso",
-                    text: "Usuario registrado con éxito",
-                    icon: "success",
-                    button: "Iniciar sesión",    
-                })
-
-                .then((Okay) => {
-                    if (Okay) {
-                        window.location.href = "iniciarSesion.php";
-                    } 
-                });
-            </script>';
-        } 
-        
-        else {
-            echo 
-            '<script>
-                swal({
                     title: "Error",
-                    text: "Fallo de registro: ' . mysqli_error($conexion) . '",
+                    text: "El correo ingresado ya está registrado.",
                     icon: "error",
-                    button: "Inténtalo de nuevo",
+                    button: "Aceptar",
                 });
             </script>';
         }
+
+        else{
+            $registrar = "INSERT INTO usuarios (nombre, apellidos, correo, pass, rol) 
+                        VALUES ('$nombres', '$apellidos', '$correo', '$pass', '$rol')";
+            $result = mysqli_query($conexion, $registrar);
+            
+            
+            if ($result) {
+                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo 
+                '<script>
+                    swal({
+                        title: "Registro exitoso",
+                        text: "Usuario registrado con éxito",
+                        icon: "success",
+                        button: "Iniciar sesión",    
+                    })
+
+                    .then((Okay) => {
+                        if (Okay) {
+                            window.location.href = "iniciarSesion.php";
+                        } 
+                    });
+                </script>';
+            } 
+            
+            else {
+                echo 
+                '<script>
+                    swal({
+                        title: "Error",
+                        text: "Fallo de registro: ' . mysqli_error($conexion) . '",
+                        icon: "error",
+                        button: "Inténtalo de nuevo",
+                    });
+                </script>';
+            }
+        }
+
+        
     }
 ?>
