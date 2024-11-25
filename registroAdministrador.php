@@ -47,9 +47,7 @@
                     <option value="" disabled selected>Selecciona un rol</option>
                     <option value="Usuario">Usuario</option>
                     <option value="Administrador">Administrador</option>
-                </select> <br>
-            <a style="color: #D25B01;" href="iniciarSesion.php">Inicia sesión</a>
-            <br>
+                </select> 
             <font face="century gothic">
                 <button class="botonIniciar" name="registro" type="submit">Registrar</button>
             </font>
