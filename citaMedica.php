@@ -25,10 +25,10 @@
                         Trámites
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Afiliación</a></li>
-                        <li><a class="dropdown-item" href="#">Cita médica</a></li>
-                        <li><a class="dropdown-item" href="#">Solicitud carnet</a></li>
-                        <li><a class="dropdown-item" href="#">Incapacidad laboral</a></li>
+                        <li><a class="dropdown-item" href="afiliacion.php">Afiliación</a></li>
+                        <li><a class="dropdown-item" href="citaMedica.php">Cita médica</a></li>
+                        <li><a class="dropdown-item" href="carnet.php">Solicitud carnet</a></li>
+                        <li><a class="dropdown-item" href="incapacidad.php">Incapacidad laboral</a></li>
                         </ul>
                     </li>
                     <!-- Fin desplegable -->
@@ -52,36 +52,36 @@
                 <span><b>Apellidos: </b></span>
                 <input type="text" id="apelidos" name="apellidos" value="<?php echo htmlspecialchars($apellidos); ?>" readonly> <br>
                 <span><b>Consultorio: </b></span>
-                <select style=" width: 100%;" name="consultorio" id="consultorio">
-                    <option value="consultorio1">Consultorio 1</option>
-                    <option value="consultorio2">Consultorio 2</option>
-                    <option value="consultorio3">Consultorio 3</option>
-                    <option value="consultorio4">Consultorio 4</option>
-                    <option value="consultorio5">Consultorio 5</option>
-                    <option value="consultorio5">Consultorio 6</option>
+                <select style=" width: 100%;" name="lugar" id="lugar">
+                    <option value="Consultorio 1">Consultorio 1</option>
+                    <option value="Consultorio 2">Consultorio 2</option>
+                    <option value="Consultorio 3">Consultorio 3</option>
+                    <option value="Consultorio 4">Consultorio 4</option>
+                    <option value="Consultorio 5">Consultorio 5</option>
+                    <option value="Consultorio 6">Consultorio 6</option>
                 </select>
                 <span><b>Fecha: </b></span>
                 <input type="date" name="fecha" id="fecha" required> <br>
                 <span><b>Hora: </b></span>
                 <select  name="hora" id="hora">
-                    <option value="horario1">09:00 am</option>
-                    <option value="horario2">10:00 am</option>
-                    <option value="horario3">11:00 am</option>
-                    <option value="horario4">12:00 pm</option>
-                    <option value="horario5">01:00 pm</option>
-                    <option value="horario6">02:00 pm</option>
-                    <option value="horario7">03:00 pm</option>
-                    <option value="horario8">04:00 pm</option>
-                    <option value="horario9">05:00 pm</option>
-                    <option value="horario10">06:00 pm</option>
-                    <option value="horario11">07:00 pm</option>
-                    <option value="horario12">08:00 pm</option>
+                <option value="9">09:00 am</option>
+                    <option value="10">10:00 am</option>
+                    <option value="11">11:00 am</option>
+                    <option value="12">12:00 pm</option>
+                    <option value="13">01:00 pm</option>
+                    <option value="14">02:00 pm</option>
+                    <option value="15">03:00 pm</option>
+                    <option value="16">04:00 pm</option>
+                    <option value="17">05:00 pm</option>
+                    <option value="18">06:00 pm</option>
+                    <option value="19">07:00 pm</option>
+                    <option value="20">08:00 pm</option>
                 </select>
                 <br><br>
             </font>
             <center>
                 <font face="century gothic">
-                    <button class="botonIniciar"name="agendar" type="submit">Agendar</button>
+                    <button class="botonIniciar" name="agendar" type="submit">Agendar</button>
                 </font>
             </center>
             </div>
@@ -103,7 +103,7 @@
  include'conexiones/conexion.php';
 
  if(isset($_POST['agendar'])){
-     $consultorio = $_POST["consultorio"];
+     $lugar = $_POST["lugar"];
      $fecha = $_POST["fecha"];
      $hora = $_POST["hora"];
 
@@ -114,36 +114,44 @@
      $id_usuario = $usuario['id_usuario'];
 
      
-     $consulta2= "SELECT n_lugar FROM lugar WHERE departamento = '$consultorio' ";
+     $consulta2= "SELECT n_lugar FROM lugar WHERE departamento = '$lugar' ";
      $sql2 = mysqli_query($conexion, $consulta2);
-     $consultorio = mysqli_fetch_assoc($sql2);
-     $n_lugar = $consultorio['n_lugar'];
+     $lugar = mysqli_fetch_assoc($sql2);
+     $n_lugar = $lugar['n_lugar'];
 
+    
      
-     $consulta3= "SELECT num_tramite FROM tramite WHERE nombre = 'Cita médica' ";
+     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Cita médica' ";
      $sql3 = mysqli_query($conexion, $consulta3);
      $tramite = mysqli_fetch_assoc($sql3);
-     $num_tramite= $usuario['num_tramite'];
+     $num_tramite= $tramite['num_tramite'];
 
-    $sql= "INSERT INTO usuario_tramite(id_usuario,n_lugar,num_tramite,fecha,hora) 
-    VALUES ('$id_usuario','$n_lugar','$num_tramite','$fecha','$hora')";
+     $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
+     VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
 
-    $resultado = mysqli_query($conexion, $sql);
-
-    if($resultado){
-        echo " <script lenguage='JavaScript'>
-                alert('Los datos fueron guardados correctamente');
-                location.assign('citaMedica.php');
-                </script> ";
+    $result = mysqli_query($conexion, $agendar);
+   
+    if($result){
+     echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo 
+                '<script>
+                    swal({
+                        title: "Cita agendada",
+                        text: "El registro de su cita se ha agendado correctamente.",
+                        icon: "success",   
+                    })
+                </script>';   
     }else{
-        echo " <script lenguage='JavaScript'>
-        alert('ERROR:Los datos no fueron guardados correctamente');
-        location.assign('citaMedica.php');
-        </script> ";
-    }
-
-mysqli_close($conexion);
-
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo 
+            '<script>
+                swal({
+                    title: "Fallo de agenda",
+                    text: "Su cita no se ha agendado debido a problemas con el sistema. Intente más tarde.",
+                    icon: "error",   
+                })
+            </script>';
+    }   
  }
 
 
