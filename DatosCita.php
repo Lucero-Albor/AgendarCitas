@@ -1,5 +1,32 @@
 <?php
-  include'conexiones/sesion.php';
+  include'conexiones/sesion.php';   
+  
+    $sql = "SELECT usuario_tramite.id_ut, lugar.nombre, lugar.departamento, usuario_tramite.fecha, usuario_tramite.hora
+           FROM usuario_tramite
+           JOIN usuarios
+           ON usuario_tramite.id_usuarios = usuarios.id_usuario
+           JOIN lugar
+           ON usuario_tramite.n_lugar = lugar.n_lugar
+           WHERE usuarios.correo = ?";
+
+    if ($stmt = mysqli_prepare($conexion, $sql)) {
+        mysqli_stmt_bind_param($stmt, "s", $correo); 
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) > 0) {
+            $datos = mysqli_fetch_assoc($result);
+            $n_tramite = $datos['id_ut'];
+            $lugar = $datos['nombre'];
+            $departamento = $datos['departamento'];
+            $fecha = $datos['fecha'];
+            $hora = $datos['hora'];
+        } 
+        else {
+            echo "No se encontraron resultados.";
+        }
+        mysqli_stmt_close($stmt);
+    }
 ?>
   
 <!DOCTYPE html>
@@ -11,6 +38,31 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <title>Datos Cita</title>
+
+    <style type="text/css">
+    .loader {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("images/carga.gif") 50% 50% no-repeat rgb(249,247,249);
+    }
+    .loader:before {
+        position: fixed;
+        left: 50%;
+        top: 60%;
+    }
+    @keyframes hide {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+  </style>
 </head>
 <body>
     <nav style="background-color: #5A1746;" class="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,27 +93,19 @@
     </nav>
 
     <div class="contenedorDatos">
-
        <center><h2>Datos Cita: </h2> <br></center> 
-        <span>Número de trámite:</span><br><br>
-        <span>Nombre del solicitante:</span><br><br>
-        <span>Lugar:</span><br><br>
-        <span>Departamento:</span><br><br>
-        <span>Fecha:</span><br><br>
-        <span>Hora:</span><br><br>
+        <span>Número de trámite: <?php echo $n_tramite; ?></span><br><br>
+        <span>Nombre del solicitante: <?php echo $n_completo?></span><br><br>
+        <span>Lugar: <?php echo $lugar; ?></span><br><br>
+        <span>Departamento: <?php echo $departamento; ?></span><br><br>
+        <span>Fecha: <?php echo $fecha; ?></span><br><br>
+        <span>Hora: <?php echo $hora.':00'; ?></span><br><br>
     </div>
-
-    </body>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+        $(".loader").fadeOut("slow");
+    });
+</script>
 </html>
-
-<?php
-   include'conexiones/sesion.php';
-
-   $sql = 'SELECT * FROM usuario_tramite';
-   
-
-
-
-
-
-?>
