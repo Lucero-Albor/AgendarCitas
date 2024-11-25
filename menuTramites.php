@@ -43,6 +43,8 @@
         <h1 class="titulo">Inicia tus trámites en línea</h1>
         <span class="texto">Agenda tus propias citas para realizar tus trámites de manera sencilla</span>
        <br><br>
+
+       <a style="color: white;" href="DatosCita.php" class="btn btn-warning"><b>Ver trámites</b></a>
                         <!-- cards -->
        <center>
         <div class="row align-items-start">

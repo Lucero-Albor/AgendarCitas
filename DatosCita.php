@@ -1,5 +1,32 @@
 <?php
-  include'conexiones/sesion.php';
+  include'conexiones/sesion.php';   
+  
+    $sql = "SELECT usuario_tramite.id_ut, lugar.nombre, lugar.departamento, usuario_tramite.fecha, usuario_tramite.hora
+           FROM usuario_tramite
+           JOIN usuarios
+           ON usuario_tramite.id_usuarios = usuarios.id_usuario
+           JOIN lugar
+           ON usuario_tramite.n_lugar = lugar.n_lugar
+           WHERE usuarios.correo = ?";
+
+    if ($stmt = mysqli_prepare($conexion, $sql)) {
+        mysqli_stmt_bind_param($stmt, "s", $correo); 
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) > 0) {
+            $datos = mysqli_fetch_assoc($result);
+            $n_tramite = $datos['id_ut'];
+            $lugar = $datos['nombre'];
+            $departamento = $datos['departamento'];
+            $fecha = $datos['fecha'];
+            $hora = $datos['hora'];
+        } 
+        else {
+            echo "No se encontraron resultados para el correo proporcionado.";
+        }
+        mysqli_stmt_close($stmt);
+    }
 ?>
   
 <!DOCTYPE html>
@@ -41,27 +68,13 @@
     </nav>
 
     <div class="contenedorDatos">
-
        <center><h2>Datos Cita: </h2> <br></center> 
-        <span>Número de trámite:</span><br><br>
-        <span>Nombre del solicitante:</span><br><br>
-        <span>Lugar:</span><br><br>
-        <span>Departamento:</span><br><br>
-        <span>Fecha:</span><br><br>
-        <span>Hora:</span><br><br>
+        <span>Número de trámite: <?php echo $n_tramite; ?></span><br><br>
+        <span>Nombre del solicitante: <?php echo $n_completo?></span><br><br>
+        <span>Lugar: <?php echo $lugar; ?></span><br><br>
+        <span>Departamento: <?php echo $departamento; ?></span><br><br>
+        <span>Fecha: <?php echo $fecha; ?></span><br><br>
+        <span>Hora: <?php echo $hora.':00'; ?></span><br><br>
     </div>
-
-    </body>
+</body>
 </html>
-
-<?php
-   include'conexiones/sesion.php';
-
-   $sql = 'SELECT * FROM usuario_tramite';
-   
-
-
-
-
-
-?>
