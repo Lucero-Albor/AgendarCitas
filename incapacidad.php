@@ -77,7 +77,7 @@
             </font>
             <center>
                 <font face="century gothic">
-                    <button class="botonIniciar">Agendar</button>
+                    <button class="botonIniciar" name="agendar">Agendar</button>
                 </font>
             </center>
         </form>
@@ -118,7 +118,7 @@
 
     
      
-     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Incapacidad Laboral' ";
+     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Trámite de incapacidad laboral' ";
      $sql3 = mysqli_query($conexion, $consulta3);
      $tramite = mysqli_fetch_assoc($sql3);
      $num_tramite= $tramite['num_tramite'];
