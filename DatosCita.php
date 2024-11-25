@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styleDatosCita.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <title>Afiliación</title>
+    <title>Datos Cita</title>
 </head>
 <body>
     <nav style="background-color: #5A1746;" class="navbar navbar-expand-lg bg-body-tertiary">
@@ -53,3 +53,15 @@
 
     </body>
 </html>
+
+<?php
+   include'conexiones/sesion.php';
+
+   $sql = 'SELECT * FROM usuario_tramite';
+   
+
+
+
+
+
+?>
