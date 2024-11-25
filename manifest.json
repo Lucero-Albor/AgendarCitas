@@ -2,7 +2,7 @@
     "name": "MiCita",
     "short_name":"MiCita",
     "start_url":"./",
-    "description":"Plataforma gubernamental para citas médcas",
+    "description":"Plataforma gubernamental para citas médicas",
     "display": "standalone",
     "icons": [
         {

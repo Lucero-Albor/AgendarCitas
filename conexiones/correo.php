@@ -13,11 +13,11 @@
             $mail->isSMTP();
                 $mail->Host = 'smtp.outlook.com';
                 $mail->SMTPAuth=true;
-                $mail->Username='meroko-449@hotmail.com';
-                $mail->Password='virgencita';
+                $mail->Username='frida.rodcue1@outlook.com';
+                $mail->Password='Sofia2024';
                 $mail->SMTPSecure='tls';
                 $mail->Port='587';
-                $mail->setFrom('meroko-449@hotmail.com', 'MiCita');
+                $mail->setFrom('frida.rodcue1@outlook.com', 'MiCita');
                 //$mail->FromName='Admin';
                 $mail->addAddress($correo,"$nombre $apellido");
                 $mail->isHTML(true);
@@ -29,5 +29,8 @@
         catch(PHPMailer\PHPMailer\Exception $e){
             echo"No se pudo enviar el correo.";
         }
+    }
+    else{
+        echo "No se enviaron los datos necesarios";
     }
 ?>
