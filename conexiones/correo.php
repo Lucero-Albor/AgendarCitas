@@ -1,7 +1,7 @@
 <?php
-    include("../PHPMailer/src/PHPMailer.php");
-    include("../PHPMailer/src/SMTP.php");
-    include("../PHPMailer/src/Exception.php");
+    include("./PHPMailer/src/PHPMailer.php");
+    include("./PHPMailer/src/SMTP.php");
+    include("./PHPMailer/src/Exception.php");
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $nombre = htmlspecialchars($_POST['nombres']);
@@ -17,7 +17,7 @@
                 $mail->Password='virgencita';
                 $mail->SMTPSecure='tls';
                 $mail->Port='587';
-                $mail->setFrom('meroko-449@hotmail.com', 'Cita Médica');
+                $mail->setFrom('meroko-449@hotmail.com', 'MiCita');
                 //$mail->FromName='Admin';
                 $mail->addAddress($correo,"$nombre $apellido");
                 $mail->isHTML(true);
@@ -26,8 +26,8 @@
                 $mail->send();
         }
 
-        catch(PHPMailer\Exception $e){
-            echo"No se pudo enviar el correo. Mailer Error: {$mail->ErrorInfo}";
+        catch(PHPMailer\PHPMailer\Exception $e){
+            echo"No se pudo enviar el correo.";
         }
     }
 ?>
