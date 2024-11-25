@@ -48,43 +48,48 @@
 </html>
 
 <?php
-    include'conexiones/conexion.php';
-    session_start();
+include 'conexiones/conexion.php';
+session_start();
 
-    if(isset($_POST['sesion'])){
-        $correo = $_POST['correo'];
-        $pass = $_POST['pass'];
-        
-        $sql = "SELECT pass FROM usuarios WHERE correo = '$correo'";
-        $result = $conexion->query($sql);
+if (isset($_POST['sesion'])) {
+    $correo = $_POST['correo'];
+    $pass = $_POST['pass'];
+
+    // Consultar la contraseña, rol y nombre del usuario
+    $sql = "SELECT pass, rol, nombre, apellidos FROM usuarios WHERE correo = '$correo'";
+    $result = $conexion->query($sql);
+
+    if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $contra = $row['pass'];
+        $rol = $row['rol'];
+        $nombre = $row['nombre'];
+        $apellidos = $row['apellidos'];
 
-        if($contra === $pass){
-            $nombre = "SELECT nombre FROM usuarios WHERE correo = '$correo'";
-            $rnombre = $conexion->query($nombre);
-            $name = $rnombre->fetch_assoc();
-            $n = $name['nombre'];
-
+        if ($contra === $pass) {
             $_SESSION['correo'] = $correo;
+            $_SESSION['rol'] = $rol; // Guardar rol en la sesión
+
             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
             echo 
             '<script>
                 swal({
                     title: "Bienvenido",
-                    text: "Hola, ' .$n.'",
+                    text: "Hola, ' . $nombre . ' ' . $apellidos . '",
                     icon: "success",
                     button: "Iniciar sesión",    
                 })
-
-                    .then((Okay) => {
-                        if (Okay) {
+                .then((Okay) => {
+                    if (Okay) {
+                        if ("' . $rol . '" === "Administrador") {
+                            window.location.href = "vistaAdmin.php";
+                        } else {
                             window.location.href = "menuTramites.php";
-                        } 
-                    })
+                        }
+                    } 
+                });
             </script>';
-        }
-        else{
+        } else {
             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
             echo 
             '<script>
@@ -92,8 +97,68 @@
                     title: "Error de contraseña",
                     text: "Verifica que tu contraseña sea correcta",
                     icon: "error"
-                })
+                });
             </script>';
         }
+    } else {
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo 
+        '<script>
+            swal({
+                title: "Usuario no encontrado",
+                text: "El correo ingresado no está registrado.",
+                icon: "error"
+            });
+        </script>';
     }
+}
+
+    // include'conexiones/conexion.php';
+    // session_start();
+
+    // if(isset($_POST['sesion'])){
+    //     $correo = $_POST['correo'];
+    //     $pass = $_POST['pass'];
+        
+    //     $sql = "SELECT pass FROM usuarios WHERE correo = '$correo'";
+    //     $result = $conexion->query($sql);
+    //     $row = $result->fetch_assoc();
+    //     $contra = $row['pass'];
+
+    //     if($contra === $pass){
+    //         $nombre = "SELECT nombre FROM usuarios WHERE correo = '$correo'";
+    //         $rnombre = $conexion->query($nombre);
+    //         $name = $rnombre->fetch_assoc();
+    //         $n = $name['nombre'];
+
+    //         $_SESSION['correo'] = $correo;
+    //         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    //         echo 
+    //         '<script>
+    //             swal({
+    //                 title: "Bienvenido",
+    //                 text: "Hola, ' .$n.'",
+    //                 icon: "success",
+    //                 button: "Iniciar sesión",    
+    //             })
+
+    //                 .then((Okay) => {
+    //                     if (Okay) {
+    //                         window.location.href = "menuTramites.php";
+    //                     } 
+    //                 })
+    //         </script>';
+    //     }
+    //     else{
+    //         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    //         echo 
+    //         '<script>
+    //             swal({
+    //                 title: "Error de contraseña",
+    //                 text: "Verifica que tu contraseña sea correcta",
+    //                 icon: "error"
+    //             })
+    //         </script>';
+    //     }
+    // }
 ?>
