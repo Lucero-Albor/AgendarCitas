@@ -40,5 +40,16 @@
         </div> 
     </nav>
 
+    <div class="contenedorDatos">
+
+       <center><h2>Datos Cita: </h2> <br></center> 
+        <span>Número de trámite:</span><br><br>
+        <span>Nombre del solicitante:</span><br><br>
+        <span>Lugar:</span><br><br>
+        <span>Departamento:</span><br><br>
+        <span>Fecha:</span><br><br>
+        <span>Hora:</span><br><br>
+    </div>
+
     </body>
 </html>
