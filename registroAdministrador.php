@@ -21,7 +21,7 @@
             <a class="navbar-brand" style="color: white; font-size: 28px;" href="index.html">MiCita</a>
             <div  style="margin-left: 25%;" class="collapse navbar-collapse" id="navbarSupportedContent">
             </div>
-            <span style="color: white;" id="user"><?php echo $n_completo;?></span>
+            <span style="color: white;" id="user"><?php echo $n_completo;?></span>&nbsp;&nbsp;
             <a style="color: white;" href="conexiones/cerrar_conexion.php">Cerrar sesión</a>
         </div>
     </nav>

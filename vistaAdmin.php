@@ -23,7 +23,7 @@
             <img src="images/logo.png" width="40px">&nbsp;&nbsp;
             <a class="navbar-brand" style="color: white; font-size: 28px;" href="index.html">MiCita</a>
             <div class="collapse navbar-collapse"></div>
-            <span style="color: white;" id="user"><?php echo $n_completo;?></span>
+            <span style="color: white;" id="user"><?php echo $n_completo;?></span>&nbsp;&nbsp;
             <a style="color: white; margin-right: 10px;" href="conexiones/cerrar_conexion.php">Cerrar sesión</a>
         </div>
     </nav>

@@ -23,7 +23,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!-- Desplegable 1-->
           <li class="nav-item dropdown tramite">
-            <a class="nav-link dropdown-toggle " style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Trámites
             </a>
             <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
           </li>
             <!-- Fin desplegable -->
         </ul>
-          <span style="color: white;" id="user"><?php echo $n_completo;?></span>
+          <span style="color: white;" id="user"><?php echo $n_completo;?></span>&nbsp;&nbsp;
           <a style="color: white;" href="conexiones/cerrar_conexion.php">Cerrar sesión</a>
           <!-- <a style="color: white;" class="iniciaSesion" href="iniciarSesion.php">Iniciar sesión</a> -->
       </div>

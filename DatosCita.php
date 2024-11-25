@@ -86,7 +86,7 @@
                     </li>
                     <!-- Fin desplegable -->
                 </ul>
-                <span style="color: white;" id="user"><?php echo $n_completo;?></span>
+                <span style="color: white;" id="user"><?php echo $n_completo;?></span>&nbsp;&nbsp;
                 <a style="color: white;" href="conexiones/cerrar_conexion.php">Cerrar sesión</a>
                 <!-- <a style="color: white;" class="iniciaSesion" href="iniciarSesion.html">Iniciar sesión</a> -->
           </div>
