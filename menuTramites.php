@@ -69,7 +69,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Cita médica</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a style="color: white;" href="#" class="btn btn-warning"><b>Tramitar</b></a>
+                      <a style="color: white;" href="citaMedica.php" class="btn btn-warning"><b>Tramitar</b></a>
                     </div>
                   </div>
             </div>
@@ -82,7 +82,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Solicitud carnet</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a style="color: white;" href="#" class="btn btn-warning"><b>Tramitar</b></a>
+                      <a style="color: white;" href="carnet.php" class="btn btn-warning"><b>Tramitar</b></a>
                     </div>
                   </div>
             </div>
@@ -95,7 +95,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Incapacidad laboral</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a style="color: white;" href="#" class="btn btn-warning"><b>Tramitar</b></a>
+                    <a style="color: white;" href="incapacidad.php" class="btn btn-warning"><b>Tramitar</b></a>
                   </div>
                 </div>
           </div>

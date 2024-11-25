@@ -25,10 +25,10 @@
                         Trámites
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Afiliación</a></li>
-                        <li><a class="dropdown-item" href="#">Cita médica</a></li>
-                        <li><a class="dropdown-item" href="#">Solicitud carnet</a></li>
-                        <li><a class="dropdown-item" href="#">Incapacidad laboral</a></li>
+                        <li><a class="dropdown-item" href="afiliacion.php">Afiliación</a></li>
+                        <li><a class="dropdown-item" href="citaMedica.php">Cita médica</a></li>
+                        <li><a class="dropdown-item" href="carnet.php">Solicitud carnet</a></li>
+                        <li><a class="dropdown-item" href="incapacidad.php">Incapacidad laboral</a></li>
                         </ul>
                     </li>
                     <!-- Fin desplegable -->
@@ -69,8 +69,8 @@
                 </select>
                 <span><b>Lugar: </b></span>
                 <select name="lugar" id="lugar">
-                    <option value="Ventanilla solicitudes">Ventanilla solicitudes</option>
-                    <option value="Ventanilla atención a derechoambiente">Ventanilla atención a derechoambiente</option>
+                    <option value="Ventanilla solicitudes">Centro 1</option>
+                    <option value="Ventanilla atención a derechoambiente">Centro 2</option>
                    
                 </select><br><br>
             </font>

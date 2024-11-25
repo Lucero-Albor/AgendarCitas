@@ -25,10 +25,10 @@
                         Trámites
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Afiliación</a></li>
-                        <li><a class="dropdown-item" href="#">Cita médica</a></li>
-                        <li><a class="dropdown-item" href="#">Solicitud carnet</a></li>
-                        <li><a class="dropdown-item" href="#">Incapacidad laboral</a></li>
+                        <li><a class="dropdown-item" href="afiliacion.php">Afiliación</a></li>
+                        <li><a class="dropdown-item" href="citaMedica.php">Cita médica</a></li>
+                        <li><a class="dropdown-item" href="carnet.php">Solicitud carnet</a></li>
+                        <li><a class="dropdown-item" href="incapacidad.php">Incapacidad laboral</a></li>
                         </ul>
                     </li>
                     <!-- Fin desplegable -->
@@ -54,7 +54,7 @@
                 <input type="date" name="fecha" id="fecha" required> <br>
                 <span><b>Hora: </b></span>
                 <select name="hora" id="hora">
-                <option value="9">09:00 am</option>
+                    <option value="9">09:00 am</option>
                     <option value="10">10:00 am</option>
                     <option value="11">11:00 am</option>
                     <option value="12">12:00 pm</option>
@@ -69,9 +69,9 @@
                 </select>
                 <span><b>Lugar: </b></span>
                 <select name="lugar" id="lugar">
-                    <option value="Edificio A">Centro 1</option>
-                    <option value="Edificio B">Centro 2</option>
-                    <option value="Edificio C">Centro 3</option>
+                    <option value="Ventanilla solicitudes">Centro 1</option>
+                    <option value="Ventanilla atención a derechoambiente">Centro 2</option>
+                    <option value="Ventanilla de nuevo derechoambiente">Centro 3</option>
                    
                 </select><br><br>
             </font>
@@ -111,7 +111,7 @@
      $id_usuario = $usuario['id_usuario'];
 
      
-     $consulta2= "SELECT n_lugar FROM lugar WHERE nombre = '$lugar' ";
+     $consulta2= "SELECT n_lugar FROM lugar WHERE departamento = '$lugar' ";
      $sql2 = mysqli_query($conexion, $consulta2);
      $lugar = mysqli_fetch_assoc($sql2);
      $n_lugar = $lugar['n_lugar'];
