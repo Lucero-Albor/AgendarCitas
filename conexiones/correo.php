@@ -30,4 +30,7 @@
             echo"No se pudo enviar el correo.";
         }
     }
+    else{
+        echo "No se enviaron los datos necesarios";
+    }
 ?>
