@@ -1,7 +1,7 @@
 <?php
   include'conexiones/sesion.php';
 ?>
-
+  
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -49,35 +49,30 @@
                 <span><b>Nombres: </b></span>
                 <input type="text" name="nombres" id="nombre" value="<?php echo htmlspecialchars($nombre); ?>" readonly> <br>
                 <span><b>Apellidos: </b></span>
-                <input type="text" id="apelidos" name="apellidos" value="<?php echo htmlspecialchars($apellidos); ?>" readonly> <br>
+                <input type="text" id="apellidos" name="apellidos" value="<?php echo htmlspecialchars($apellidos); ?>" readonly> <br>
+                <span><b>Lugar: </b></span>
+                <input type="text" name="lugar" id="lugar" value="Ventanilla de nuevo derechoambiente" readonly><br>
                 <span><b>Fecha: </b></span>
                 <input type="date" name="fecha" id="fecha" required> <br>
                 <span><b>Hora: </b></span>
                 <select name="hora" id="hora">
-                    <option value="horario1">09:00 am</option>
-                    <option value="horario2">10:00 am</option>
-                    <option value="horario3">11:00 am</option>
-                    <option value="horario4">12:00 pm</option>
-                    <option value="horario5">01:00 pm</option>
-                    <option value="horario6">02:00 pm</option>
-                    <option value="horario7">03:00 pm</option>
-                    <option value="horario8">04:00 pm</option>
-                    <option value="horario9">05:00 pm</option>
-                    <option value="horario10">06:00 pm</option>
-                    <option value="horario11">07:00 pm</option>
-                    <option value="horario12">08:00 pm</option>
+                    <option value="9">09:00 am</option>
+                    <option value="10">10:00 am</option>
+                    <option value="11">11:00 am</option>
+                    <option value="12">12:00 pm</option>
+                    <option value="13">01:00 pm</option>
+                    <option value="14">02:00 pm</option>
+                    <option value="15">03:00 pm</option>
+                    <option value="16">04:00 pm</option>
+                    <option value="17">05:00 pm</option>
+                    <option value="18">06:00 pm</option>
+                    <option value="19">07:00 pm</option>
+                    <option value="20">08:00 pm</option>
                 </select>
-                <span><b>Lugar: </b></span>
-                <select name="lugar" id="lugar">
-                    <option value="Centro1">Centro 1</option>
-                    <option value="Centro2">Centro 2</option>
-                    <option value="Centro3">Centro 3</option>
-                    <option value="Centro4">Centro 4</option>
-                </select><br><br>
             </font>
             <center>
                 <font face="century gothic">
-                    <button class="botonIniciar">Agendar</button>
+                    <button class="botonIniciar" type="submit" name="agendar">Agendar</button>
                 </font>
             </center>
         </form>
@@ -93,3 +88,45 @@
     <br><br>
 </body>
 </html>
+
+<?php
+  if(isset($_POST['agendar'])){
+    $lugar = $_POST['lugar'];
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
+    
+    $consulta_u = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
+    $sql_cu = mysqli_query($conexion, $consulta_u);
+    $usuario = mysqli_fetch_assoc($sql_cu);
+    $id_usuario = $usuario['id_usuario'];
+
+    $consulta_l = "SELECT n_lugar from lugar WHERE departamento = '$lugar'";
+    $sql_lu = mysqli_query($conexion, $consulta_l);
+    $lugar = mysqli_fetch_assoc($sql_lu);
+    $n_lugar = $lugar['n_lugar'];
+
+    $consulta_t = "SELECT num_tramite from tramites WHERE nombre = 'Cita médica'";
+    $sql_t = mysqli_query($conexion, $consulta_t);
+    $tramite = mysqli_fetch_assoc($sql_t);
+    $num_tramite = $tramite['num_tramite'];
+    
+    $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
+                VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
+    $result = mysqli_query($conexion, $agendar);
+    if ($result) {
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo 
+        '<script>
+            swal({
+                title: "Cita agendada",
+                text: "El registro de su cita se ha agendado correctamente.",
+                icon: "success",   
+            })
+        </script>';
+    } 
+    
+    else {
+        echo "Error al registrar el usuario";
+    }
+  }
+?>
