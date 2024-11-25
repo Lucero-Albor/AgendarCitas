@@ -90,43 +90,71 @@
 </html>
 
 <?php
-  if(isset($_POST['agendar'])){
-    $lugar = $_POST['lugar'];
-    $fecha = $_POST['fecha'];
-    $hora = $_POST['hora'];
-    
-    $consulta_u = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
-    $sql_cu = mysqli_query($conexion, $consulta_u);
-    $usuario = mysqli_fetch_assoc($sql_cu);
-    $id_usuario = $usuario['id_usuario'];
+    if(isset($_POST['agendar'])){
+        $lugar = $_POST['lugar'];
+        $fecha = $_POST['fecha'];
+        $hora = $_POST['hora'];
+        
+        $consulta_u = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
+        $sql_cu = mysqli_query($conexion, $consulta_u);
+        $usuario = mysqli_fetch_assoc($sql_cu);
+        $id_usuario = $usuario['id_usuario'];
 
-    $consulta_l = "SELECT n_lugar from lugar WHERE departamento = '$lugar'";
-    $sql_lu = mysqli_query($conexion, $consulta_l);
-    $lugar = mysqli_fetch_assoc($sql_lu);
-    $n_lugar = $lugar['n_lugar'];
+        $consulta_l = "SELECT n_lugar from lugar WHERE departamento = '$lugar'";
+        $sql_lu = mysqli_query($conexion, $consulta_l);
+        $lugar = mysqli_fetch_assoc($sql_lu);
+        $n_lugar = $lugar['n_lugar'];
 
-    $consulta_t = "SELECT num_tramite from tramites WHERE nombre = 'Cita médica'";
-    $sql_t = mysqli_query($conexion, $consulta_t);
-    $tramite = mysqli_fetch_assoc($sql_t);
-    $num_tramite = $tramite['num_tramite'];
-    
-    $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
-                VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
-    $result = mysqli_query($conexion, $agendar);
-    if ($result) {
-        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-        echo 
-        '<script>
-            swal({
-                title: "Cita agendada",
-                text: "El registro de su cita se ha agendado correctamente.",
-                icon: "success",   
-            })
-        </script>';
-    } 
-    
-    else {
-        echo "Error al registrar el usuario";
+        $consulta_t = "SELECT num_tramite FROM  tramites WHERE nombre = 'Afiliación'";
+        $sql_t = mysqli_query($conexion, $consulta_t);
+        $tramite = mysqli_fetch_assoc($sql_t);
+        $num_tramite = $tramite['num_tramite'];    
+
+        $verificar = "SELECT fecha, hora FROM usuario_tramite 
+                    WHERE num_tramite ='$num_tramite' AND fecha = '$fecha' AND hora = '$hora'";    
+        $existente = mysqli_query($conexion, $verificar);
+
+        if (mysqli_num_rows($existente) > 0) {
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo 
+            '<script>
+                swal({
+                    title: "Cita no disponible",
+                    text: "La hora seleccionada para la fecha indicada no está disponible, seleccione otra.",
+                    icon: "error",
+                    button: "Aceptar",
+                });
+            </script>';
+        }
+
+        else{
+            $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
+                    VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
+            
+            $result = mysqli_query($conexion, $agendar);
+            if ($result) {
+                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo 
+                '<script>
+                    swal({
+                        title: "Cita agendada",
+                        text: "El registro de su cita se ha agendado correctamente.",
+                        icon: "success",   
+                    })
+                </script>';
+            } 
+            
+            else {
+                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo 
+                '<script>
+                    swal({
+                        title: "Fallo de agenda",
+                        text: "Su cita no se ha agendado debido a problemas con el sistema. Intente más tarde.",
+                        icon: "error",   
+                    })
+                </script>';
+            }
+        }
     }
-  }
 ?>
