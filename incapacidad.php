@@ -54,25 +54,25 @@
                 <input type="date" name="fecha" id="fecha" required> <br>
                 <span><b>Hora: </b></span>
                 <select name="hora" id="hora">
-                    <option value="horario1">09:00 am</option>
-                    <option value="horario2">10:00 am</option>
-                    <option value="horario3">11:00 am</option>
-                    <option value="horario4">12:00 pm</option>
-                    <option value="horario5">01:00 pm</option>
-                    <option value="horario6">02:00 pm</option>
-                    <option value="horario7">03:00 pm</option>
-                    <option value="horario8">04:00 pm</option>
-                    <option value="horario9">05:00 pm</option>
-                    <option value="horario10">06:00 pm</option>
-                    <option value="horario11">07:00 pm</option>
-                    <option value="horario12">08:00 pm</option>
+                <option value="9">09:00 am</option>
+                    <option value="10">10:00 am</option>
+                    <option value="11">11:00 am</option>
+                    <option value="12">12:00 pm</option>
+                    <option value="13">01:00 pm</option>
+                    <option value="14">02:00 pm</option>
+                    <option value="15">03:00 pm</option>
+                    <option value="16">04:00 pm</option>
+                    <option value="17">05:00 pm</option>
+                    <option value="18">06:00 pm</option>
+                    <option value="19">07:00 pm</option>
+                    <option value="20">08:00 pm</option>
                 </select>
                 <span><b>Lugar: </b></span>
                 <select name="lugar" id="lugar">
-                    <option value="Centro1">Centro 1</option>
-                    <option value="Centro2">Centro 2</option>
-                    <option value="Centro3">Centro 3</option>
-                    <option value="Centro4">Centro 4</option>
+                    <option value="Edificio A">Centro 1</option>
+                    <option value="Edificio B">Centro 2</option>
+                    <option value="Edificio C">Centro 3</option>
+                   
                 </select><br><br>
             </font>
             <center>
@@ -95,3 +95,52 @@
     <br><br>
 </body>
 </html>
+
+<?php
+ include'conexiones/conexion.php';
+
+ if(isset($_POST['agendar'])){
+     $lugar = $_POST["lugar"];
+     $fecha = $_POST["fecha"];
+     $hora = $_POST["hora"];
+
+
+     $consulta1= "SELECT id_usuario FROM usuarios WHERE correo = '$correo' ";
+     $sql1 = mysqli_query($conexion, $consulta1);
+     $usuario = mysqli_fetch_assoc($sql1);
+     $id_usuario = $usuario['id_usuario'];
+
+     
+     $consulta2= "SELECT n_lugar FROM lugar WHERE nombre = '$lugar' ";
+     $sql2 = mysqli_query($conexion, $consulta2);
+     $lugar = mysqli_fetch_assoc($sql2);
+     $n_lugar = $lugar['n_lugar'];
+
+    
+     
+     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Incapacidad Laboral' ";
+     $sql3 = mysqli_query($conexion, $consulta3);
+     $tramite = mysqli_fetch_assoc($sql3);
+     $num_tramite= $tramite['num_tramite'];
+
+     $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
+     VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
+
+    $result = mysqli_query($conexion, $agendar);
+
+    if($result){
+        echo " <script lenguage='JavaScript'>
+                alert('Los datos fueron guardados correctamente');
+                location.assign('menuTramites.php);
+                </script> ";
+    }else{
+        echo " <script lenguage='JavaScript'>
+        alert('ERROR:Los datos no fueron guardados correctamente');
+        location.assign('citaMedica.php');
+        </script> ";
+    }
+
+ }
+
+
+?>
