@@ -32,7 +32,7 @@
             <span><b>Apellidos: </b></span>
             <input type="text" id="apellidos" name="apellidos" placeholder="Apellido" maxlength="50" required> <br>
             <span><b>Correo: </b></span>
-            <input type="text" name="correo" id="correo" placeholder="alguien@dominio.com" required> <br>
+            <input type="email" name="correo" id="correo" placeholder="alguien@dominio.com" required> <br>
             <span><b>Contraseña: </b></span>
             <input type="password" id="pass" name="pass" placeholder="********" maxlength="50" required> <br>
             <a style="color: #D25B01;" href="iniciarSesion.php">Inicia sesión</a>
