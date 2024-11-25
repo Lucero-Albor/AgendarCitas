@@ -1,0 +1,83 @@
+/* General */
+body {
+    background-color: #ffffff;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header-container {
+    position: relative;
+    height: 150px;
+}
+
+.header-container .logo {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 150px;
+}
+
+.header-container .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 34px;
+    color: black;
+    text-align: center;
+}
+
+
+/* Botones de navegación */
+button.btn-outline-secondary {
+    border: 2px solid #7d7325;
+    color: white;
+    background-color: #7d7325;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+button.btn-outline-secondary:hover {
+    background-color: #5a5101;
+    color: white;
+}
+
+/* Botones de acción */
+button.btn-warning {
+    background-color: #EAA724;
+    color: white;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-size: 14px;
+    border: none;
+}
+
+button.btn-warning:hover {
+    background-color: #D2931A;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background-color: #EAA724;
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
