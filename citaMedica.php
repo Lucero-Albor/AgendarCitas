@@ -77,17 +77,11 @@
                     <option value="horario11">07:00 pm</option>
                     <option value="horario12">08:00 pm</option>
                 </select>
-                <span><b>Lugar: </b></span>
-                <select name="lugar" id="lugar">
-                    <option value="Centro1">Centro 1</option>
-                    <option value="Centro2">Centro 2</option>
-                    <option value="Centro3">Centro 3</option>
-                    <option value="Centro4">Centro 4</option>
-                </select><br><br>
+                <br><br>
             </font>
             <center>
                 <font face="century gothic">
-                    <button class="botonIniciar">Agendar</button>
+                    <button class="botonIniciar"name="agendar" type="submit">Agendar</button>
                 </font>
             </center>
             </div>
@@ -104,3 +98,39 @@
     <br><br>
 </body>
 </html>
+
+<?php
+ include'conexiones/conexion.php';
+
+ if(isset($_POST['agendar'])){
+     $nombre = $_POST["nombre"];
+     $apellidos = $_POST["apellidos"];
+     $consultorio = $_POST["consultorio"];
+     $fecha = $_POST["fecha"];
+     $hora = $_POST["hora"];
+
+
+     $consulta= "SELECT departamento FROM lugar WHERE departamento = '$consultorio' ";
+    $sql= "INSERT INTO usuario_tramite(nombre,apellidos,departamento,fecha,hora) 
+    VALUES ('$nombre','$apellidos','$consultorio','$fecha','$hora')";
+
+    $resultado = mysqli_query($conexion, $sql);
+
+    if($resultado){
+        echo " <script lenguage='JavaScript'>
+                alert('Los datos fueron guardados correctamente');
+                location.assign('citaMedica.php');
+                </script> ";
+    }else{
+        echo " <script lenguage='JavaScript'>
+        alert('ERROR:Los datos no fueron guardados correctamente');
+        location.assign('citaMedica.php');
+        </script> ";
+    }
+
+mysqli_close($conexion);
+
+ }
+
+
+?>
