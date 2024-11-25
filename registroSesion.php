@@ -79,6 +79,7 @@
             
             
             if ($result) {
+                include'conexiones/correo.php';
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo 
                 '<script>

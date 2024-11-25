@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi primera página</title>
+</head>
+
+<style>
+    .inicio{
+        background-color: #ffdaee;
+        text-align: center;
+        color: #000;
+    }
+
+    .container{
+        width: 600px;
+        padding: 30px;
+        margin: 0px;
+        text-align: justify;
+        background-color:white;
+        align-content: center;
+        align-self: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* Estilo para Pantallas de escritorio */
+    @media((min-width: 1024px)){
+        .container{
+            padding: 0 40px;
+        }
+    }
+
+    /* Estilo para pantalla de tabletas */
+    @media((min-width: 60px) and (max-width:960px)){
+        .container{
+            padding: 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    /* Estilo para pantalla de celulares */
+    @media (max-width:760px){
+        .container{
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
+<body class="inicio">
+    <center>
+        <div class="container">
+            <div>
+                Bienvenido
+            </div>
+        </div>
+    </center>
+</body>
+</html>
