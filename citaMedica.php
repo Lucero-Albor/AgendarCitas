@@ -103,16 +103,30 @@
  include'conexiones/conexion.php';
 
  if(isset($_POST['agendar'])){
-     $nombre = $_POST["nombre"];
-     $apellidos = $_POST["apellidos"];
      $consultorio = $_POST["consultorio"];
      $fecha = $_POST["fecha"];
      $hora = $_POST["hora"];
 
 
-     $consulta= "SELECT departamento FROM lugar WHERE departamento = '$consultorio' ";
-    $sql= "INSERT INTO usuario_tramite(nombre,apellidos,departamento,fecha,hora) 
-    VALUES ('$nombre','$apellidos','$consultorio','$fecha','$hora')";
+     $consulta1= "SELECT id_usuario FROM usuarios WHERE correo = '$correo' ";
+     $sql1 = mysqli_query($conexion, $consulta1);
+     $usuario = mysqli_fetch_assoc($sql1);
+     $id_usuario = $usuario['id_usuario'];
+
+     
+     $consulta2= "SELECT n_lugar FROM lugar WHERE departamento = '$consultorio' ";
+     $sql2 = mysqli_query($conexion, $consulta2);
+     $consultorio = mysqli_fetch_assoc($sql2);
+     $n_lugar = $consultorio['n_lugar'];
+
+     
+     $consulta3= "SELECT num_tramite FROM tramite WHERE nombre = 'Cita médica' ";
+     $sql3 = mysqli_query($conexion, $consulta3);
+     $tramite = mysqli_fetch_assoc($sql3);
+     $num_tramite= $usuario['num_tramite'];
+
+    $sql= "INSERT INTO usuario_tramite(id_usuario,n_lugar,num_tramite,fecha,hora) 
+    VALUES ('$id_usuario','$n_lugar','$num_tramite','$fecha','$hora')";
 
     $resultado = mysqli_query($conexion, $sql);
 
