@@ -1,0 +1,39 @@
+{
+    "name": "MiCita",
+    "short_name":"MiCita",
+    "start_url":"./",
+    "description":"Plataforma gubernamental para citas médcas",
+    "display": "standalone",
+    "icons": [
+        {
+            "src":"./images/icono45.png",
+            "sizes":"45x45",
+            "type":"image/png"
+        },
+        {
+            "src":"./images/icono64.png",
+            "sizes":"64x64",
+            "type":"image/png"
+        },
+        {
+            "src":"./images/icono99.png",
+            "sizes":"99x99",
+            "type":"image/png"
+        },
+        {
+            "src":"./images/icono144.png",
+            "sizes":"144x144",
+            "type":"image/png"
+        }
+    ],
+    "related_application":[
+            {
+                "platform":"web"
+            },
+            {
+                "platform": "localhost",
+                "url": "localhost"
+            }
+        ]
+
+}
