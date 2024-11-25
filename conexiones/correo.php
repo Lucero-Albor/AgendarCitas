@@ -13,13 +13,16 @@
             $mail->isSMTP();
                 $mail->Host = 'smtp.outlook.com';
                 $mail->SMTPAuth=true;
-                $mail->Username='frida.rodcue1@outlook.com';
-                $mail->Password='Sofia2024';
+                $mail->Username='meroko-449@hotmail.com';
+                $mail->Password='virgencita';
                 $mail->SMTPSecure='tls';
                 $mail->Port='587';
-                $mail->setFrom('frida.rodcue1@outlook.com', 'MiCita');
+                
+                $mail->setFrom($correo, $nombre);
+                $mail->AddAddress($correo, "$nombre $apellido");
+              //  $mail->setFrom('frida.rodcue1@outlook.com', 'MiCita');
                 //$mail->FromName='Admin';
-                $mail->addAddress($correo,"$nombre $apellido");
+               // $mail->addAddress($correo,"$nombre $apellido");
                 $mail->isHTML(true);
                 $mail->Subject='Información';
                 $mail->Body=file_get_contents("ficha.html");
