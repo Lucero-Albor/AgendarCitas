@@ -21,7 +21,7 @@
       
     <div class="container">
     <center>
-        <form  class="formulario" method="post" >
+        <form  class="formulario" method="post"  action="./conexiones/correo.php">
             <img src="images/logo.png" alt="" width="100px">
         <br>
             <font face="century gothic">
