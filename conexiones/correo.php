@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isHTML(true);
         $mail->Subject = 'Registro';
 
-        // Verificar archivo ficha.html
         if (!file_exists("../ficha.html")) {
             throw new Exception("El archivo ficha.html no se encontró.");
         }

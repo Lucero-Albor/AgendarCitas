@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/styleRegistroSesion.css">
     <link rel="stylesheet" href="css/styleRegistroAdmin.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="manifest" href="./manifest.json">
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Registro</title>
