@@ -130,18 +130,28 @@
      VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
 
     $result = mysqli_query($conexion, $agendar);
-
+   
     if($result){
-        echo " <script lenguage='JavaScript'>
-                alert('Los datos fueron guardados correctamente');
-                location.assign('menuTramites.php);
-                </script> ";
+     echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo 
+                '<script>
+                    swal({
+                        title: "Cita agendada",
+                        text: "El registro de su cita se ha agendado correctamente.",
+                        icon: "success",   
+                    })
+                </script>';   
     }else{
-        echo " <script lenguage='JavaScript'>
-        alert('ERROR:Los datos no fueron guardados correctamente');
-        location.assign('citaMedica.php');
-        </script> ";
-    }
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo 
+            '<script>
+                swal({
+                    title: "Fallo de agenda",
+                    text: "Su cita no se ha agendado debido a problemas con el sistema. Intente más tarde.",
+                    icon: "error",   
+                })
+            </script>';
+    }   
 
  }
 
