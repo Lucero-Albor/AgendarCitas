@@ -1,6 +1,5 @@
 <?php
   include'conexiones/sesion.php';   
-  
     $sql = "SELECT usuario_tramite.id_ut, lugar.nombre, lugar.departamento, usuario_tramite.fecha, usuario_tramite.hora
            FROM usuario_tramite
            JOIN usuarios
@@ -95,6 +94,15 @@
 
     <div class="contenedorDatos">
        <center><h2>Datos Cita: </h2> <br></center> 
+       <!-- <form action="" method="post">
+        <select name="tramite" id="tramite">
+            <option value="Afiliación">Afiliación</option>
+            <option value="Cita médica">Cita médica</option>
+            <option value="Solicitud de carnet médico">Solicitud de carnet médico</option>
+            <option value="Trámite de incapacidad laboral">Trámite de incapacidad laboral</option>
+        </select><br>
+       </form> -->
+       
         <span>Número de trámite: <?php echo $n_tramite; ?></span><br><br>
         <span>Nombre del solicitante: <?php echo $n_completo?></span><br><br>
         <span>Lugar: <?php echo $lugar; ?></span><br><br>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="manifest" href="./manifest.json">
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <title>Inicio sesión</title>
 </head>
@@ -55,7 +56,6 @@ if (isset($_POST['sesion'])) {
     $correo = $_POST['correo'];
     $pass = $_POST['pass'];
 
-    // Consultar la contraseña, rol y nombre del usuario
     $sql = "SELECT pass, rol, nombre, apellidos FROM usuarios WHERE correo = '$correo'";
     $result = $conexion->query($sql);
 
@@ -68,7 +68,7 @@ if (isset($_POST['sesion'])) {
 
         if ($contra === $pass) {
             $_SESSION['correo'] = $correo;
-            $_SESSION['rol'] = $rol; // Guardar rol en la sesión
+            $_SESSION['rol'] = $rol;
 
             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
             echo 

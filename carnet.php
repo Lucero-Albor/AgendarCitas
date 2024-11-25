@@ -68,12 +68,12 @@
                     <option value="19">07:00 pm</option>
                     <option value="20">08:00 pm</option>
                 </select>
-                <span><b>Lugar: </b></span>
-                <select name="lugar" id="lugar">
+                <!-- <span><b>Lugar: </b></span> -->
+                <!-- <select name="lugar" id="lugar">
                     <option value="Ventanilla solicitudes">Centro 1</option>
                     <option value="Ventanilla atención a derechoambiente">Centro 2</option>
                    
-                </select><br><br>
+                </select><br><br> -->
             </font>
             <center>
                 <font face="century gothic">
@@ -91,7 +91,9 @@
         <span>Correo electrónico</span><br><br>
         <span>Comprobante de domicilio</span><br><br>
     </div>
-    <br><br>
+    <br>
+    <a style="color: white; margin-left:70%;" href="DatosCita.php" class="btn btn-warning"><b>Ver trámites</b></a>
+    <br>
 </body>
 </html>
 
@@ -99,7 +101,7 @@
  include'conexiones/conexion.php';
 
  if(isset($_POST['agendar'])){
-     $lugar = $_POST["lugar"];
+     $lugar = "Ventanilla de nuevo derechoambiente";
      $fecha = $_POST["fecha"];
      $hora = $_POST["hora"];
 
@@ -116,8 +118,7 @@
      $n_lugar = $lugar['n_lugar'];
 
     
-     
-     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Solicitar Carnet' ";
+     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Solicitud de carnet médico' ";
      $sql3 = mysqli_query($conexion, $consulta3);
      $tramite = mysqli_fetch_assoc($sql3);
      $num_tramite= $tramite['num_tramite'];

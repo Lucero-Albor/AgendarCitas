@@ -70,6 +70,7 @@
                     <option value="19">07:00 pm</option>
                     <option value="20">08:00 pm</option>
                 </select>
+                <span name="tramite" value="1"></span>
             </font>
             <center>
                 <font face="century gothic">
@@ -86,7 +87,12 @@
         <span>Correo electrónico</span><br><br>
         <span>Comprobante de domicilio</span><br><br>
     </div>
-    <br><br>
+    <br>
+    <form action="" method="post">
+        <span name="tramite" value="1"></span>
+        <a style="color: white; margin-left:70%;" href="DatosCita.php" class="btn btn-warning" type="submit" name="btntramite"><b>Ver trámites</b></a>
+    </form>
+    <br>
 </body>
 </html>
 

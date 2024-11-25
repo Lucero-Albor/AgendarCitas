@@ -21,6 +21,7 @@
             <div  style="margin-left: 25%;" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Desplegable 1-->
+                    
                     <li class="nav-item dropdown tramite">
                         <a class="nav-link dropdown-toggle " style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Trámites
@@ -68,13 +69,13 @@
                     <option value="19">07:00 pm</option>
                     <option value="20">08:00 pm</option>
                 </select>
-                <span><b>Lugar: </b></span>
+                <!-- <span><b>Lugar: </b></span>
                 <select name="lugar" id="lugar">
                     <option value="Ventanilla solicitudes">Centro 1</option>
                     <option value="Ventanilla atención a derechoambiente">Centro 2</option>
                     <option value="Ventanilla de nuevo derechoambiente">Centro 3</option>
                    
-                </select><br><br>
+                </select><br><br> -->
             </font>
             <center>
                 <font face="century gothic">
@@ -93,7 +94,9 @@
         <span>Comprobante de domicilio</span><br><br>
         <span>Reporte médico</span><br><br>
     </div>
-    <br><br>
+    <br>
+    <a style="color: white; margin-left:70%;" href="DatosCita.php" class="btn btn-warning"><b>Ver trámites</b></a>
+    <br>
 </body>
 </html>
 
@@ -101,7 +104,7 @@
  include'conexiones/conexion.php';
 
  if(isset($_POST['agendar'])){
-     $lugar = $_POST["lugar"];
+     $lugar = "Ventanilla solicitudes";
      $fecha = $_POST["fecha"];
      $hora = $_POST["hora"];
 

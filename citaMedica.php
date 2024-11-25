@@ -96,7 +96,9 @@
         <span>Correo electrónico</span><br><br>
         <span>Comprobante de domicilio</span><br><br>
     </div>
-    <br><br>
+    <br>
+    <a style="color: white; margin-left:70%;" href="DatosCita.php" class="btn btn-warning"><b>Ver trámites</b></a>
+    <br>
 </body>
 </html>
 
