@@ -23,7 +23,7 @@
             $hora = $datos['hora'];
         } 
         else {
-            echo "No se encontraron resultados para el correo proporcionado.";
+            echo "No se encontraron resultados.";
         }
         mysqli_stmt_close($stmt);
     }
@@ -38,6 +38,31 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <title>Datos Cita</title>
+
+    <style type="text/css">
+    .loader {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("images/carga.gif") 50% 50% no-repeat rgb(249,247,249);
+    }
+    .loader:before {
+        position: fixed;
+        left: 50%;
+        top: 60%;
+    }
+    @keyframes hide {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+  </style>
 </head>
 <body>
     <nav style="background-color: #5A1746;" class="navbar navbar-expand-lg bg-body-tertiary">
@@ -77,4 +102,10 @@
         <span>Hora: <?php echo $hora.':00'; ?></span><br><br>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+        $(".loader").fadeOut("slow");
+    });
+</script>
 </html>
