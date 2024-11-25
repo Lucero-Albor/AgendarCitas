@@ -1,0 +1,17 @@
+body {
+    background-image: url('../images/fondoRegistroAdmin.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+}
+.formulario select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    border: 2px solid black;
+    background-color: white;
+}
