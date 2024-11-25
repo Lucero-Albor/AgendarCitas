@@ -27,9 +27,9 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="afiliacion.php">Afiliación</a></li>
-                  <li><a class="dropdown-item" href="#">Cita médica</a></li>
-                  <li><a class="dropdown-item" href="#">Solicitud carnet</a></li>
-                  <li><a class="dropdown-item" href="#">Incapacidad laboral</a></li>
+                  <li><a class="dropdown-item" href="citaMedica.php">Cita médica</a></li>
+                  <li><a class="dropdown-item" href="carnet.php">Solicitud carnet</a></li>
+                  <li><a class="dropdown-item" href="incapacidad.php">Incapacidad laboral</a></li>
                </ul>
               </li>
               <!-- Fin desplegable -->
