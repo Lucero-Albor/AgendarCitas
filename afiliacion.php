@@ -105,7 +105,7 @@
         $lugar = mysqli_fetch_assoc($sql_lu);
         $n_lugar = $lugar['n_lugar'];
 
-        $consulta_t = "SELECT num_tramite FROM  tramites WHERE nombre = 'Cita médica'";
+        $consulta_t = "SELECT num_tramite FROM  tramites WHERE nombre = 'Afiliación'";
         $sql_t = mysqli_query($conexion, $consulta_t);
         $tramite = mysqli_fetch_assoc($sql_t);
         $num_tramite = $tramite['num_tramite'];    
