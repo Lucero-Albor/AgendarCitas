@@ -103,6 +103,7 @@
 </html>
 
 <?php
+
  include'conexiones/conexion.php';
 
  if(isset($_POST['agendar'])){

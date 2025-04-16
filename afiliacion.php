@@ -97,28 +97,45 @@
 </html>
 
 <?php
-    if(isset($_POST['agendar'])){
-        $lugar = $_POST['lugar'];
-        $fecha = $_POST['fecha'];
-        $hora = $_POST['hora'];
-        
-        $consulta_u = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
-        $sql_cu = mysqli_query($conexion, $consulta_u);
-        $usuario = mysqli_fetch_assoc($sql_cu);
+
+include 'conexiones/conexion.php';
+
+if (isset($_POST['agendar'])) {
+    // Asegurarse de que el usuario esté autenticado
+    if (!isset($_SESSION['correo'])) {
+        echo '<script>alert("El usuario no está autenticado.");</script>';
+        exit;
+    }
+
+    $correo = $_SESSION['correo'];
+    $lugar = $_POST['lugar'];
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
+
+    // Obtener ID del usuario
+    $consulta_u = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
+    $sql_cu = mysqli_query($conexion, $consulta_u);
+    $usuario = mysqli_fetch_assoc($sql_cu);
+
+    // Obtener número de lugar
+    $consulta_l = "SELECT n_lugar FROM lugar WHERE departamento = '$lugar'";
+    $sql_lu = mysqli_query($conexion, $consulta_l);
+    $datos_lugar = mysqli_fetch_assoc($sql_lu);
+
+    // Obtener número de trámite
+    $consulta_t = "SELECT num_tramite FROM tramites WHERE nombre = 'Afiliación'";
+    $sql_t = mysqli_query($conexion, $consulta_t);
+    $tramite = mysqli_fetch_assoc($sql_t);
+
+    // Verificar que se obtuvo toda la información necesaria
+    if ($usuario && $datos_lugar && $tramite) {
         $id_usuario = $usuario['id_usuario'];
+        $n_lugar = $datos_lugar['n_lugar'];
+        $num_tramite = $tramite['num_tramite'];
 
-        $consulta_l = "SELECT n_lugar from lugar WHERE departamento = '$lugar'";
-        $sql_lu = mysqli_query($conexion, $consulta_l);
-        $lugar = mysqli_fetch_assoc($sql_lu);
-        $n_lugar = $lugar['n_lugar'];
-
-        $consulta_t = "SELECT num_tramite FROM  tramites WHERE nombre = 'Afiliación'";
-        $sql_t = mysqli_query($conexion, $consulta_t);
-        $tramite = mysqli_fetch_assoc($sql_t);
-        $num_tramite = $tramite['num_tramite'];    
-
+        // Verificar si ya existe una cita en ese horario
         $verificar = "SELECT fecha, hora FROM usuario_tramite 
-                    WHERE num_tramite ='$num_tramite' AND fecha = '$fecha' AND hora = '$hora'";    
+                      WHERE num_tramite = '$num_tramite' AND fecha = '$fecha' AND hora = '$hora'";
         $existente = mysqli_query($conexion, $verificar);
 
         if (mysqli_num_rows($existente) > 0) {
@@ -132,13 +149,13 @@
                     button: "Aceptar",
                 });
             </script>';
-        }
-
-        else{
+        } else {
+            // Insertar nueva cita
             $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
-                    VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
-            
+                        VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
+
             $result = mysqli_query($conexion, $agendar);
+
             if ($result) {
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo 
@@ -146,22 +163,103 @@
                     swal({
                         title: "Cita agendada",
                         text: "El registro de su cita se ha agendado correctamente.",
-                        icon: "success",   
-                    })
+                        icon: "success",
+                        button: "Aceptar",
+                    });
                 </script>';
-            } 
-            
-            else {
+            } else {
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo 
                 '<script>
                     swal({
                         title: "Fallo de agenda",
                         text: "Su cita no se ha agendado debido a problemas con el sistema. Intente más tarde.",
-                        icon: "error",   
-                    })
+                        icon: "error",
+                        button: "Aceptar",
+                    });
                 </script>';
+                echo "Error de MySQL: " . mysqli_error($conexion);
             }
         }
+    } else {
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo 
+        '<script>
+            swal({
+                title: "Error de datos",
+                text: "No se pudo obtener la información del usuario, lugar o trámite.",
+                icon: "error",
+                button: "Aceptar",
+            });
+        </script>';
     }
+}
+
+    // if(isset($_POST['agendar'])){
+    //     $lugar = $_POST['lugar'];
+    //     $fecha = $_POST['fecha'];
+    //     $hora = $_POST['hora'];
+        
+    //     $consulta_u = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
+    //     $sql_cu = mysqli_query($conexion, $consulta_u);
+    //     $usuario = mysqli_fetch_assoc($sql_cu);
+    //     $id_usuario = $usuario['id_usuario'];
+
+    //     $consulta_l = "SELECT n_lugar from lugar WHERE departamento = '$lugar'";
+    //     $sql_lu = mysqli_query($conexion, $consulta_l);
+    //     $lugar = mysqli_fetch_assoc($sql_lu);
+    //     $n_lugar = $lugar['n_lugar'];
+
+    //     $consulta_t = "SELECT num_tramite FROM  tramites WHERE nombre = 'Afiliación'";
+    //     $sql_t = mysqli_query($conexion, $consulta_t);
+    //     $tramite = mysqli_fetch_assoc($sql_t);
+    //     $num_tramite = $tramite['num_tramite'];    
+
+    //     $verificar = "SELECT fecha, hora FROM usuario_tramite 
+    //                 WHERE num_tramite ='$num_tramite' AND fecha = '$fecha' AND hora = '$hora'";    
+    //     $existente = mysqli_query($conexion, $verificar);
+
+    //     if (mysqli_num_rows($existente) > 0) {
+    //         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    //         echo 
+    //         '<script>
+    //             swal({
+    //                 title: "Cita no disponible",
+    //                 text: "La hora seleccionada para la fecha indicada no está disponible, seleccione otra.",
+    //                 icon: "error",
+    //                 button: "Aceptar",
+    //             });
+    //         </script>';
+    //     }
+
+    //     else{
+    //         $agendar = "INSERT INTO usuario_tramite (id_usuarios, n_lugar, num_tramite, fecha, hora)
+    //                 VALUES ('$id_usuario', '$n_lugar', '$num_tramite', '$fecha', '$hora')";
+            
+    //         $result = mysqli_query($conexion, $agendar);
+    //         if ($result) {
+    //             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    //             echo 
+    //             '<script>
+    //                 swal({
+    //                     title: "Cita agendada",
+    //                     text: "El registro de su cita se ha agendado correctamente.",
+    //                     icon: "success",   
+    //                 })
+    //             </script>';
+    //         } 
+            
+    //         else {
+    //             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    //             echo 
+    //             '<script>
+    //                 swal({
+    //                     title: "Fallo de agenda",
+    //                     text: "Su cita no se ha agendado debido a problemas con el sistema. Intente más tarde.",
+    //                     icon: "error",   
+    //                 })
+    //             </script>';
+    //         }
+    //     }
+    // }
 ?>

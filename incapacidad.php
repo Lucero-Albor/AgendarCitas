@@ -122,7 +122,7 @@
 
     
      
-     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Trámite de incapacidad laboral' ";
+     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Incapacidad laboral' ";
      $sql3 = mysqli_query($conexion, $consulta3);
      $tramite = mysqli_fetch_assoc($sql3);
      $num_tramite= $tramite['num_tramite'];

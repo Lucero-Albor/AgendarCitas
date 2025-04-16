@@ -118,7 +118,7 @@
      $n_lugar = $lugar['n_lugar'];
 
     
-     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Solicitud de carnet médico' ";
+     $consulta3= "SELECT num_tramite FROM tramites WHERE nombre = 'Carnet' ";
      $sql3 = mysqli_query($conexion, $consulta3);
      $tramite = mysqli_fetch_assoc($sql3);
      $num_tramite= $tramite['num_tramite'];
