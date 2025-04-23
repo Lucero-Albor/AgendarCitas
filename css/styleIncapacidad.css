@@ -61,6 +61,10 @@
     height: 40px;
   }
 
+  .botonIniciar:hover{
+    background-color: #D25B01;
+  }
+  
   .contenedorDatos{
     background:#5A1846;
     border-radius: 20px;

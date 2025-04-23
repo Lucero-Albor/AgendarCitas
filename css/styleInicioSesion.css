@@ -61,3 +61,7 @@ body {
     height: 40px;
 
   }
+
+  .botonIniciar:hover{
+    background-color: #D25B01;
+  }
